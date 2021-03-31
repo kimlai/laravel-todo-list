@@ -27,4 +27,10 @@ class TaskController
         // ~ vue
         return redirect('/');
     }
+
+    public function editTask($id)
+    {
+      $task = DB::select("SELECT * FROM tasks WHERE id = ?", [$id])[0];
+      return view("edit", ["task" => $task]);
+    }
 }

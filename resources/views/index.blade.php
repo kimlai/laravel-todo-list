@@ -26,7 +26,10 @@
         @enderror                                                  
         <ul>
             @foreach ($tasks as $task)
-                <li>{{ $task->content }}</li>
+                <li>
+                  {{ $task->content }}
+                  <a href="/edit-task/{{ $task->id }}">Éditer</a>
+                </li>
             @endforeach                                        
         </ul>                                                     
         </main>  

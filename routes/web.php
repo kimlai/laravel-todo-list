@@ -16,3 +16,4 @@ use App\Http\Controllers\TaskController;
 
 Route::get('/', [TaskController::class, 'listTasks']);
 Route::post('/new-task', [TaskController::class, 'addTask']);
+Route::get('/edit-task/{id}', [TaskController::class, 'editTask']);
