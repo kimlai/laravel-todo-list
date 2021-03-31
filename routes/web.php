@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,15 +14,5 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    $tasks = DB::select("SELECT id, content FROM tasks");
-    return view('index', ["tasks" => $tasks]);
-});
-
-Route::post('/new-task', function(Request $request) {
-    $validatedData = $request->validate(["content" => "required"]);
-    $content = $validatedData["content"];
-    DB::insert("INSERT INTO tasks (content) VALUES (:content)", ["content" => $content]);
-                                                                    
-    return redirect('/');          
-});
+Route::get('/', [TaskController::class, 'listTasks']);
+Route::post('/new-task', [TaskController::class, 'addTask']);
